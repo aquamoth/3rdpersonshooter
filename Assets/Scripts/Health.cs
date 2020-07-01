@@ -6,16 +6,17 @@ public class Health : MonoBehaviour
     private int currentHealth;
 
     // Start is called before the first frame update
-    private void onEnable()
+    private void OnEnable()
     {
         currentHealth = startingHealth;
     }
 
     public void TakeDamage(int damageAmount)
     {
+        Debug.Log($"Damaging {currentHealth} - {damageAmount}");
         currentHealth -= damageAmount;
 
-        if(currentHealth<=0)
+        if (currentHealth <= 0)
             Die();
     }
 
