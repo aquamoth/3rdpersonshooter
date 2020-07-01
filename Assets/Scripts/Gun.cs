@@ -32,7 +32,9 @@ public class Gun : MonoBehaviour
         var ray = new Ray(firePoint.position, firePoint.forward);
         if (Physics.Raycast(ray, out RaycastHit hitinfo, 100f))
         {
-            Destroy(hitinfo.collider.gameObject);
+            var health = hitinfo.collider.GetComponent<Health>();
+            if (health != null)
+                health.TakeDamage(damage);
         }
 
     }

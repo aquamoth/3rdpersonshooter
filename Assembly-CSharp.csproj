@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Gun.cs" />
+    <Compile Include="Assets\Scripts\Health.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <None Include="Assets\ToonSoldiers_demo\ToonSoldiers_demo.txt" />
     <Reference Include="UnityEngine">
