@@ -9,6 +9,7 @@ public class Gun : MonoBehaviour
     [SerializeField, Range(1, 10)] private int damage = 1;
     [SerializeField] private Transform firePoint;
     [SerializeField] private ParticleSystem muzzleParticle;
+    [SerializeField] private AudioSource gunFireSource;
 
     private float timer;
 
@@ -37,6 +38,8 @@ public class Gun : MonoBehaviour
             //TODO: 21 mins into https://www.youtube.com/watch?v=D6l35wT7KXg&list=PLB5_EOMkLx_Wa0sRby_krVpglLS7IYH3_&index=2
             Debug.LogWarning("Muzzle particle not connected to gun yet!");
         }
+
+        gunFireSource.Play();
 
         var ray = new Ray(firePoint.position, firePoint.forward);
         if (Physics.Raycast(ray, out RaycastHit hitinfo, 100f))
