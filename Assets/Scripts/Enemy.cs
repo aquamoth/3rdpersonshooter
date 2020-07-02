@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     
     [SerializeField, Range(0.1f, 1f)] private float attackRate = 1.5f;
     [SerializeField, Range(1, 10)] private int maxDamage = 1;
+    [SerializeField] private ParticleSystem muzzleParticle = null;
+    [SerializeField] private AudioSource gunFireSource = null;
 
     private void Awake()
     {
@@ -43,7 +45,22 @@ public class Enemy : MonoBehaviour
     private void Attack()
     {
         attackTimer = 0;
+        FireGun();
+    }
 
-        healthTarget.TakeDamage(maxDamage);
+    private void FireGun()
+    {
+        muzzleParticle.Play();
+        gunFireSource.Play();
+
+        if (IsHit())
+        {
+            healthTarget.TakeDamage(maxDamage);
+        }
+    }
+
+    private static bool IsHit()
+    {
+        return UnityEngine.Random.Range(0, 100) < 30;
     }
 }
