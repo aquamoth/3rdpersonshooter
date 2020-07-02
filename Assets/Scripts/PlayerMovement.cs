@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float forwardMoveSpeed = 7.5f;
     [SerializeField] private float backwardMoveSpeed = 3f;
+    [SerializeField] private float stafeMoveSpeed = 3f;
     [SerializeField] private float turnSpeed = 150f;
 
     private void Awake()
@@ -24,11 +25,18 @@ public class PlayerMovement : MonoBehaviour
     {
         var horizontal = Input.GetAxis("Mouse X");
         var vertical = Input.GetAxis("Vertical");
+        var strafe = Input.GetAxis("Horizontal");
 
         //var movement = new Vector3(horizontal, 0, vertical);
 
         animator.SetFloat("Speed", vertical);
+        animator.SetFloat("Strafe", strafe);
         transform.Rotate(Vector3.up, horizontal * turnSpeed * Time.deltaTime);
+
+        if (strafe != 0)
+        {
+            characterController.SimpleMove(transform.right * stafeMoveSpeed * strafe);
+        }
 
         if (vertical != 0)
         {
