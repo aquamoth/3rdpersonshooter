@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (healthTarget != null)
+        if (healthTarget != null && healthTarget.gameObject.activeInHierarchy)
         {
             attackTimer += Time.deltaTime;
 
