@@ -23,13 +23,25 @@ public class PlayerMovement : MonoBehaviour
 
         var movement = new Vector3(horizontal, 0, vertical);
 
-        characterController.SimpleMove(movement * Time.deltaTime*moveSpeed);
-        animator.SetFloat("Speed", movement.magnitude);
+        animator.SetFloat("Speed", vertical);
+        transform.Rotate(Vector3.up, horizontal * turnSpeed * Time.deltaTime);
 
-        if (movement.magnitude>0)
+        if (vertical!=0)
         {
-            Quaternion newDirection = Quaternion.LookRotation(movement);
-            transform.rotation = Quaternion.Slerp(transform.rotation, newDirection, Time.deltaTime * turnSpeed);
+            characterController.SimpleMove(transform.forward * moveSpeed * vertical);
         }
+
+
+
+
+
+        //characterController.SimpleMove(movement * Time.deltaTime*moveSpeed);
+        //animator.SetFloat("Speed", movement.magnitude);
+
+        //if (movement.magnitude>0)
+        //{
+        //    Quaternion newDirection = Quaternion.LookRotation(movement);
+        //    transform.rotation = Quaternion.Slerp(transform.rotation, newDirection, Time.deltaTime * turnSpeed);
+        //}
     }
 }
