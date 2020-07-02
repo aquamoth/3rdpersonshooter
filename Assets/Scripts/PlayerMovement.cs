@@ -15,11 +15,14 @@ public class PlayerMovement : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
+
+        //TODO: Make toggle and move to own script. Abort locking in game with Alt + Tab
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
     {
-        var horizontal = Input.GetAxis("Horizontal");
+        var horizontal = Input.GetAxis("Mouse X");
         var vertical = Input.GetAxis("Vertical");
 
         //var movement = new Vector3(horizontal, 0, vertical);

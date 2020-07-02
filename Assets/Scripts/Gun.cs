@@ -7,8 +7,8 @@ public class Gun : MonoBehaviour
 {
     [SerializeField, Range(0.1f, 1.5f)] private float fireRate = 1f;
     [SerializeField, Range(1, 10)] private int damage = 1;
-    [SerializeField] private ParticleSystem muzzleParticle;
-    [SerializeField] private AudioSource gunFireSource;
+    [SerializeField] private ParticleSystem muzzleParticle = null;
+    [SerializeField] private AudioSource gunFireSource = null;
 
     private float timer;
 
