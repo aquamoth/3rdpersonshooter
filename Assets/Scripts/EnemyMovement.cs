@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
     private Animator animator;
     private NavMeshAgent navMeshAgent;
     private AggroDetection aggroDetection;
+    private Transform target;
 
     private void Awake()
     {
@@ -20,13 +21,17 @@ public class EnemyMovement : MonoBehaviour
 
     private void AggroDetection_OnAggro(Transform target)
     {
-        navMeshAgent.SetDestination(target.position);
+        this.target = target;
     }
 
     private void Update()
     {
-        var speed = navMeshAgent.velocity.magnitude;
-        animator.SetFloat("Speed", speed);
+        if (target != null)
+        {
+            navMeshAgent.SetDestination(target.position);
 
+            var speed = navMeshAgent.velocity.magnitude;
+            animator.SetFloat("Speed", speed);
+        }
     }
 }
